@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Wasim Ansari — Agricultural Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #e8dcc8;
+    --earth: #2c2416;
+    --olive: #5a6b2e;
+    --sage: #8fa86a;
+    --clay: #a0522d;
+    --mist: #f4f0e8;
+    --gold: #c9a84c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--earth);
+    color: var(--sand);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Header / Hero */
+  header {
+    padding: 5rem 0 3rem;
+    border-bottom: 1px solid rgba(232,220,200,0.15);
+    position: relative;
+  }
+
+  .header-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: end;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--sage);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.1s;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--mist);
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.2s;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .tagline {
+    margin-top: 1.5rem;
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: rgba(232,220,200,0.65);
+    max-width: 500px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.35s;
+  }
+
+  .contact-row {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.5s;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(232,220,200,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item:hover { color: var(--gold); }
+
+  .contact-item .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
+  }
+
+  .location-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--earth);
+    background: var(--gold);
+    padding: 0.4rem 0.9rem;
+    border-radius: 2px;
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.6s;
+    align-self: flex-start;
+  }
+
+  /* Divider with palm motif */
+  .palm-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 2.5rem 0;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards 0.7s;
+  }
+
+  .palm-line { flex: 1; height: 1px; background: rgba(232,220,200,0.12); }
+
+  .palm-icon {
+    font-size: 1.4rem;
+    opacity: 0.5;
+  }
+
+  /* Sections */
+  section {
+    padding: 3.5rem 0;
+    border-bottom: 1px solid rgba(232,220,200,0.08);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--sage);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(90,107,46,0.3);
+  }
+
+  /* Summary */
+  .summary-text {
+    font-size: 1.35rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(232,220,200,0.85);
+    max-width: 700px;
+  }
+
+  .summary-text strong {
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* Experience */
+  .exp-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .exp-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid rgba(232,220,200,0.1);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.3s, background 0.3s;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .exp-card:hover {
+    border-color: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.04);
+  }
+
+  .exp-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.2rem;
+  }
+
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--sage);
+    letter-spacing: 0.05em;
+  }
+
+  .exp-company {
+    font-size: 0.85rem;
+    color: rgba(232,220,200,0.5);
+    line-height: 1.4;
+  }
+
+  .exp-location {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: rgba(232,220,200,0.35);
+    margin-top: 0.3rem;
+  }
+
+  .current-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    color: var(--earth);
+    background: var(--olive);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    margin-top: 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .exp-title {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--mist);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .exp-bullets li {
+    font-size: 0.95rem;
+    color: rgba(232,220,200,0.65);
+    line-height: 1.6;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  /* Education */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    padding: 1.8rem;
+    border: 1px solid rgba(232,220,200,0.1);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.02);
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .edu-degree {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--mist);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .edu-field {
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 0.8rem;
+  }
+
+  .edu-uni { font-size: 0.88rem; color: rgba(232,220,200,0.55); }
+  .edu-year { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--sage); margin-top: 0.4rem; }
+
+  .edu-gpa {
+    margin-top: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(232,220,200,0.4);
+  }
+
+  .edu-gpa span { color: var(--gold); font-size: 0.85rem; }
+
+  /* Skills */
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.15em;
+    color: var(--sage);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-tag {
+    font-size: 0.82rem;
+    color: rgba(232,220,200,0.7);
+    border: 1px solid rgba(232,220,200,0.15);
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .skill-tag:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* Languages */
+  .lang-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+  }
+
+  .lang-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem 1.4rem;
+    border: 1px solid rgba(232,220,200,0.1);
+    border-radius: 4px;
+    min-width: 100px;
+    text-align: center;
+  }
+
+  .lang-name { font-size: 1rem; color: var(--mist); }
+  .lang-level { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--sage); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* Footer */
+  footer {
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-size: 2rem;
+    font-weight: 300;
+    color: rgba(232,220,200,0.2);
+    letter-spacing: 0.05em;
+    font-style: italic;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .header-inner { grid-template-columns: 1fr; }
+    .exp-card { grid-template-columns: 1fr; gap: 0.8rem; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .skills-layout { grid-template-columns: 1fr; }
+    h1 { font-size: 2.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div>
+        <p class="eyebrow">Portfolio · Agricultural Engineer</p>
+        <h1>Md <em>Wasim</em><br>Ansari</h1>
+        <p class="tagline">Dedicated to cultivating living landscapes — from nursery floor to landmark projects across the Gulf.</p>
+        <div class="contact-row">
+          <a class="contact-item" href="tel:+966540811625"><span class="dot"></span>+966 540 811 625</a>
+          <a class="contact-item" href="mailto:wasimansari.agr@gmail.com"><span class="dot"></span>wasimansari.agr@gmail.com</a>
+          <a class="contact-item" href="https://linkedin.com/in/wasimansari-agr" target="_blank"><span class="dot"></span>linkedin.com/in/wasimansari-agr</a>
+        </div>
+      </div>
+      <div class="location-badge">📍 Riyadh, KSA</div>
+    </div>
+  </header>
+
+  <!-- SUMMARY -->
+  <section style="animation: fadeUp 0.7s ease forwards 0.7s; opacity:0;">
+    <p class="section-label">About</p>
+    <p class="summary-text">
+      Agricultural Engineer with hands-on experience across <strong>Saudi Arabia, UAE, and India</strong> — skilled in landscape design, nursery management, plant pathology, and procurement. Currently overseeing <strong>45,000+ trees</strong> for landmark Riyadh projects including Diriyah and Qiddiya.
+    </p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <p class="section-label">Experience</p>
+    <div class="exp-grid">
+
+      <div class="exp-card" style="animation-delay:0.1s">
+        <div class="exp-meta">
+          <span class="exp-period">2025 – Present</span>
+          <span class="exp-company">Tala Nursery, AALICO</span>
+          <span class="exp-location">Riyadh, KSA</span>
+          <span class="current-badge">Current</span>
+        </div>
+        <div>
+          <p class="exp-title">Agricultural Engineer</p>
+          <ul class="exp-bullets">
+            <li>Quality assurance of procured plants for DGDA (Diriyah) Phase 1 & 2 and QIC (Qiddiya), ensuring compliance with landscape specifications and AECOM consultant requirements.</li>
+            <li>Supervised daily health monitoring, irrigation, fertilization, pest/disease control and acclimatization of 45,000+ DG2-assigned trees.</li>
+            <li>Operational bridge between Tala Nursery (AALICO), DGDA, and QIC; coordinated MIRs, WIRs, and incoming stock from Thailand, Spain, China, and Egypt.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card" style="animation-delay:0.2s">
+        <div class="exp-meta">
+          <span class="exp-period">2024</span>
+          <span class="exp-company">HDFC Bank Limited</span>
+          <span class="exp-location">Raipur, India</span>
+        </div>
+        <div>
+          <p class="exp-title">Relationship Manager <span style="font-size:0.85rem; color:var(--sage); font-style:italic;">(Agri-Rural)</span></p>
+          <ul class="exp-bullets">
+            <li>Facilitated agri-loans for land cultivation, greenhouse setups, and large-scale landscaping projects.</li>
+            <li>Conducted land and farm evaluations analyzing soil, water, and crop productivity for data-driven loan approvals.</li>
+            <li>Advised clients on crop planning, input management, and sustainable agricultural practices.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card" style="animation-delay:0.3s">
+        <div class="exp-meta">
+          <span class="exp-period">2021 – 2023</span>
+          <span class="exp-company">Desert Group LLC</span>
+          <span class="exp-location">Dubai, UAE</span>
+        </div>
+        <div>
+          <p class="exp-title">Agricultural Engineer</p>
+          <ul class="exp-bullets">
+            <li>Supervised plant production and quality maintenance at Wahat Al Sahraa Nursery and Dubai Garden Centre for indoor and outdoor plants.</li>
+            <li>Applied plant pathology expertise to maintain health of trees, palms, shrubs, and grasses across landscaping projects.</li>
+            <li>Managed propagation, acclimatization of imported plants, production cycle planning, and inventory of seeds, fertilizers, and materials.</li>
+            <li>Designed landscapes with local and exotic plants; prepared quotations, invoices, Material Submittals, RFQs, and LPOs for clients across UAE.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <p class="section-label">Education</p>
+    <div class="edu-grid">
+      <div class="edu-card" style="animation-delay:0.1s">
+        <p class="edu-degree">M.Sc. in Agriculture</p>
+        <p class="edu-field">Plant Pathology</p>
+        <p class="edu-uni">Aligarh Muslim University</p>
+        <p class="edu-year">2019 – 2021 · UP, India</p>
+        <p class="edu-gpa">GPA <span>7.70</span> / 10</p>
+      </div>
+      <div class="edu-card" style="animation-delay:0.2s">
+        <p class="edu-degree">B.Sc. (Hons.) in Agriculture</p>
+        <p class="edu-field">&nbsp;</p>
+        <p class="edu-uni">Uttar Banga Krishi Viswavidyalaya</p>
+        <p class="edu-year">2014 – 2018 · WB, India</p>
+        <p class="edu-gpa">GPA <span>7.81</span> / 10</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <p class="section-label">Skills</p>
+    <div class="skills-layout">
+      <div>
+        <p class="skill-group-title">Technical</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Nursery Management</span>
+          <span class="skill-tag">Plant Pathology</span>
+          <span class="skill-tag">Landscape Design</span>
+          <span class="skill-tag">Pest & Disease Control</span>
+          <span class="skill-tag">Quality Assurance</span>
+          <span class="skill-tag">Procurement</span>
+          <span class="skill-tag">MS Office</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-title">Interpersonal</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Teamwork</span>
+          <span class="skill-tag">Communication</span>
+          <span class="skill-tag">Task Prioritisation</span>
+          <span class="skill-tag">Timely Execution</span>
+          <span class="skill-tag">Client Relations</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-title">Languages</p>
+        <div class="lang-row" style="flex-direction:column; gap:0.6rem;">
+          <div class="lang-item" style="flex-direction:row; justify-content:space-between; padding:0.6rem 0.9rem; min-width:unset;">
+            <span class="lang-name" style="font-size:0.9rem;">English</span><span class="lang-level">Proficient</span>
+          </div>
+          <div class="lang-item" style="flex-direction:row; justify-content:space-between; padding:0.6rem 0.9rem; min-width:unset;">
+            <span class="lang-name" style="font-size:0.9rem;">Hindi</span><span class="lang-level">Native</span>
+          </div>
+          <div class="lang-item" style="flex-direction:row; justify-content:space-between; padding:0.6rem 0.9rem; min-width:unset;">
+            <span class="lang-name" style="font-size:0.9rem;">Bengali</span><span class="lang-level">Native</span>
+          </div>
+          <div class="lang-item" style="flex-direction:row; justify-content:space-between; padding:0.6rem 0.9rem; min-width:unset;">
+            <span class="lang-name" style="font-size:0.9rem;">Arabic</span><span class="lang-level">Basic</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-name">Md Wasim Ansari</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
